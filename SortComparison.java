@@ -116,7 +116,6 @@ import java.util.Scanner;
      */
 
     static double[] mergeSort (double a[]) {
-
         return a;
     }
 
