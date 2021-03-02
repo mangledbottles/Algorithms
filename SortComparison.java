@@ -227,11 +227,12 @@ import java.util.Scanner;
     /**
      * Alternative readFile method
      * This method is NOT used
+     * WebCat does not like ArrayList :)
      *
      * Adds each double to an ArrayList and converts to double[] data structure at end
      * This method assumes the input length is unknown, hence a double[] cannot be established
      * unless you want to create a new double[i] with every time i increments (new line detected)
-      */
+
     public static double[] readFile(String fileName) {
         File myObj = new File(fileName);
         ArrayList<Double> result = new ArrayList();
@@ -247,6 +248,7 @@ import java.util.Scanner;
         }
         return result.stream().mapToDouble(Double::doubleValue).toArray();
     }
+     */
 
 }//end class
 
