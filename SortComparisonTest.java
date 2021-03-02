@@ -79,6 +79,13 @@ public class SortComparisonTest
 
     }
 
+    @Test
+    public void testMergeSort() {
+        double[] input = new double[]{6, 5, 3, 1, 8, 7, 2, 4};
+        assertEquals("[1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]", Arrays.toString(SortComparison.mergeSort(input)));
+
+    }
+
 
 }
 
