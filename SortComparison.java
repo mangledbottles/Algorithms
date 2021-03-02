@@ -154,7 +154,6 @@ import java.util.Scanner;
 
         /*Copy data to temp arrays*/
         for (int i = 0; i < subArr1; ++i) leftTmp[i] = arr[l + i];
-
         for (int j = 0; j < subArr2; ++j) rightTmp[j] = arr[mid + 1 + j];
 
 
