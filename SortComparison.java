@@ -3,7 +3,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -23,7 +22,6 @@ import java.util.Scanner;
      * @return array sorted in ascending order.
      *
      */
-    // 65318724
     static double [] insertionSort (double a[]){
         for(int i=1; i<a.length; i++) {
             for(int j=i; j>0; j--) {
@@ -116,9 +114,80 @@ import java.util.Scanner;
      */
 
     static double[] mergeSort (double a[]) {
+        mergeSortRecursive(a, 0, a.length-1);
         return a;
     }
 
+    /**
+     * Top down merge sort
+     * Divides the array (double a[] into 2 halves and sort each recursively and finally merge them
+     *
+     * @param a the array (double[])
+     * @param l left half
+     * @param r right half
+     */
+
+    static void mergeSortRecursive(double a[], int l, int r) {
+        if(l < r) {
+            int mid = (l + r) /2;
+            mergeSortRecursive(a, l, mid); // sort first half
+            mergeSortRecursive(a, mid + 1, r); // sort second half
+
+            mergeHalves(a, l, mid, r); // merge both sorted halves
+        }
+    }
+
+    /**
+     * Merge sorted halves for merge sort
+     * @param arr the array
+     * @param l left half
+     * @param mid middle element index
+     * @param r right half
+     */
+
+    static void mergeHalves(double arr[], int l, int mid, int r) {
+        // Find sizes of two subarrays to be merged
+        int subArr1 = mid - l + 1;
+        int subArr2 = r - mid;
+
+        /* Create temp arrays */
+        double leftTmp[] = new double[subArr1];
+        double rightTmp[] = new double[subArr2];
+
+        /*Copy data to temp arrays*/
+        for (int i = 0; i < subArr1; ++i) leftTmp[i] = arr[l + i];
+
+        for (int j = 0; j < subArr2; ++j) rightTmp[j] = arr[mid + 1 + j];
+
+
+        int i = 0, j = 0;
+
+        int k = l;
+        while (i < subArr1 && j < subArr2) {
+            if (leftTmp[i] <= rightTmp[j]) {
+                arr[k] = leftTmp[i];
+                i++;
+            }
+            else {
+                arr[k] = rightTmp[j];
+                j++;
+            }
+            k++;
+        }
+
+        // Copy remaining elements of leftTmp[] (if any)
+        while (i < subArr1) {
+            arr[k] = leftTmp[i];
+            i++;
+            k++;
+        }
+        // Copy remaining elements of rightTmp[] (if any)
+        while (j < subArr2) {
+            arr[k] = rightTmp[j];
+            j++;
+            k++;
+        }
+    }
 
     public static void main() {
 
