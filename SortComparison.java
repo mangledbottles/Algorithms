@@ -103,18 +103,6 @@ import java.util.Scanner;
     }
 
     /**
-     * Swap two doubles in a double[] array
-     * @param array
-     * @param a
-     * @param b
-     */
-    static void swap(double[] array, int a, int b) {
-        double tmp = array[a];
-        array[a] = array[b];
-        array[b] = tmp;
-    }
-
-    /**
      * Sorts an array of doubles using Merge Sort.
      * This method is static, thus it can be called as SortComparison.sort(a)
      * @param a: An unsorted array of doubles.
@@ -235,13 +223,18 @@ import java.util.Scanner;
         long[] numbers10kOutput = runTimeElapse(numbers10k);
         System.out.println("numbers10k " + Arrays.toString(numbers10kOutput));
 
+    }
 
-
-
-//        double[] numbers10k = readFile("numbers10000.txt", 10000);
-//        System.out.println(Arrays.toString(numbers10k));
-
-//        System.out.println(numbers1000);
+    /**
+     * Swap two doubles in a double[] array
+     * @param array
+     * @param a
+     * @param b
+     */
+    static void swap(double[] array, int a, int b) {
+        double tmp = array[a];
+        array[a] = array[b];
+        array[b] = tmp;
     }
 
     public static long[] runTimeElapse(double[] array) {
@@ -266,7 +259,6 @@ import java.util.Scanner;
         start = System.nanoTime();
         mergeSort(array);
         output[3] = System.nanoTime() - start;
-
 
         return output;
     }
