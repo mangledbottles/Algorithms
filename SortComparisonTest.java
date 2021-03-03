@@ -22,6 +22,8 @@ import java.util.Arrays;
  * This performance comparison uses 7 different data sets to show different algorithmic efficacy
  * dependent on the data set
  *
+ * Check out the graph attached, Algorithm_Performance_Comparison_Graphed.png to see the difference!
+ *
  * Results: Time (nano seconds) [insert,   selection, quick,    merge]
  *  numbers1k                   [3113600,  2830800,   3924966,  373800]
  *  numbers1kDuplicates         [805833,   262333,    226200,   194833]
