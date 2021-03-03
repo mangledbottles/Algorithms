@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -9,6 +10,23 @@ import java.util.Scanner;
  *
  *  @author Dermot O'Brien
  *  @version HT 2020
+ */
+
+
+/**
+ * Algorithm Performance Comparison
+ *
+ *
+ *
+ * Results: Time (nano seconds) [insert,   selection, quick,    merge]
+ *  numbers1k                   [5854700,  4908000,   5793200,  767800]
+ *  numbers1kDuplicates         [679200,   229200,    3108300,  132000]
+ *  numbers1kNearlyOrdered      [228800,   263100,    191700,   118100]
+ *  numbers1kReverse            [267200,   209300,    168100,   113500]
+ *  numbers1kSorted             [206100,   203900,    172500,   124400]
+ *  numbers10k                  [27044300, 17698500,  18771500, 1461900]
+ *
+ *
  */
 
  class SortComparison {
@@ -186,17 +204,71 @@ import java.util.Scanner;
         }
     }
 
-    public static void main() {
+    public static void main(String args[]) {
 
         //todo: do experiments as per assignment instructions
 
-//        double[] numbers1k = readFile("numbers1000.txt", 1000);
-//        System.out.println(Arrays.toString(numbers1k));
+        double[] numbers1k = readFile("./files/numbers1000.txt", 1000);
+        double[] numbers1kDuplicates = readFile("./files/numbers1000Duplicates.txt", 1000);
+        double[] numbers1kNearlyOrdered = readFile("./files/numbersNearlyOrdered1000.txt", 1000);
+        double[] numbers1kReverse = readFile("./files/numbersReverse1000.txt", 1000);
+        double[] numbers1kSorted = readFile("./files/numbersSorted1000.txt", 1000);
+        double[] numbers10k = readFile("./files/numbers10000.txt", 10000);
+
+        System.out.println("Time (nano seconds) [insert, selection, quick, merge]");
+
+        long[] numbers1kOutput = runTimeElapse(numbers1k);
+        System.out.println("numbers1k " + Arrays.toString(numbers1kOutput));
+
+        long[] numbers1kDuplicatesOutput = runTimeElapse(numbers1kDuplicates);
+        System.out.println("numbers1kDuplicates " + Arrays.toString(numbers1kDuplicatesOutput));
+
+        long[] numbers1kNearlyOrderedOutput = runTimeElapse(numbers1kNearlyOrdered);
+        System.out.println("numbers1kNearlyOrdered " + Arrays.toString(numbers1kNearlyOrderedOutput));
+
+        long[] numbers1kReverseOutput = runTimeElapse(numbers1kReverse);
+        System.out.println("numbers1kReverse " + Arrays.toString(numbers1kReverseOutput));
+
+        long[] numbers1kSortedOutput = runTimeElapse(numbers1kSorted);
+        System.out.println("numbers1kSorted " + Arrays.toString(numbers1kSortedOutput));
+
+        long[] numbers10kOutput = runTimeElapse(numbers10k);
+        System.out.println("numbers10k " + Arrays.toString(numbers10kOutput));
+
+
+
 
 //        double[] numbers10k = readFile("numbers10000.txt", 10000);
 //        System.out.println(Arrays.toString(numbers10k));
 
 //        System.out.println(numbers1000);
+    }
+
+    public static long[] runTimeElapse(double[] array) {
+        long[] output = new long[4];
+
+        // Speed test for insertion sort
+        long start = System.nanoTime();
+        insertionSort(array);
+        output[0] = System.nanoTime() - start;
+
+        // Speed test for selection sort
+        start = System.nanoTime();
+        selectionSort(array);
+        output[1] = System.nanoTime() - start;
+
+        // Speed test for quick sort
+        start = System.nanoTime();
+        quickSort(array);
+        output[2] = System.nanoTime() - start;
+
+        // Speed test for merge sort
+        start = System.nanoTime();
+        mergeSort(array);
+        output[3] = System.nanoTime() - start;
+
+
+        return output;
     }
 
     /**

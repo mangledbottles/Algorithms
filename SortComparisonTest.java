@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  *  Test class for SortComparison.java
  *
- *  @author
+ *  @author Dermot O'Brien
  *  @version HT 2020
  *
  *  TODO: Test empty input, algorithm performance comparison
@@ -34,11 +34,21 @@ public class SortComparisonTest
     @Test
     public void testEmpty()
     {
+        double[] input = new double[0];
+
+        // Insertion Sort
+        assertEquals("[]", Arrays.toString(SortComparison.insertionSort((input))));
+
+        // Selection Sort
+        assertEquals("[]", Arrays.toString(SortComparison.selectionSort((input))));
+
+        // Quick Sort
+        assertEquals("[]", Arrays.toString(SortComparison.quickSort((input))));
+
+        // Merge Sort
+        assertEquals("[]", Arrays.toString(SortComparison.mergeSort((input))));
     }
 
-
-    // TODO: add more tests here. Each line of code and ech decision in Collinear.java should
-    // be executed at least once from at least one test.
 
     // ----------------------------------------------------------
     /**
@@ -46,11 +56,9 @@ public class SortComparisonTest
      *  Use this main method to create the experiments needed to answer the experimental performance questions of this assignment.
      *
      */
-    @Test
-    public void main()
+    public static void main(String args[])
     {
 //        new SortComparison();
-        SortComparison.main();
         //TODO: implement this method
 
     }
