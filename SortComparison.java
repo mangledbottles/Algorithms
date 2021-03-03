@@ -13,22 +13,6 @@ import java.util.Scanner;
  */
 
 
-/**
- * Algorithm Performance Comparison
- *
- *
- *
- * Results: Time (nano seconds) [insert,   selection, quick,    merge]
- *  numbers1k                   [5854700,  4908000,   5793200,  767800]
- *  numbers1kDuplicates         [679200,   229200,    3108300,  132000]
- *  numbers1kNearlyOrdered      [228800,   263100,    191700,   118100]
- *  numbers1kReverse            [267200,   209300,    168100,   113500]
- *  numbers1kSorted             [206100,   203900,    172500,   124400]
- *  numbers10k                  [27044300, 17698500,  18771500, 1461900]
- *
- *
- */
-
  class SortComparison {
 
     /**
@@ -194,8 +178,6 @@ import java.util.Scanner;
 
     public static void main(String args[]) {
 
-        //todo: do experiments as per assignment instructions
-
         double[] numbers1k = readFile("./files/numbers1000.txt", 1000);
         double[] numbers1kDuplicates = readFile("./files/numbers1000Duplicates.txt", 1000);
         double[] numbers1kNearlyOrdered = readFile("./files/numbersNearlyOrdered1000.txt", 1000);
@@ -238,27 +220,37 @@ import java.util.Scanner;
     }
 
     public static long[] runTimeElapse(double[] array) {
+        final int runTimes = 3;
         long[] output = new long[4];
 
-        // Speed test for insertion sort
-        long start = System.nanoTime();
-        insertionSort(array);
-        output[0] = System.nanoTime() - start;
+        for(int i=0; i<runTimes; i++) {
 
-        // Speed test for selection sort
-        start = System.nanoTime();
-        selectionSort(array);
-        output[1] = System.nanoTime() - start;
+            // Speed test for insertion sort
+            long start = System.nanoTime();
+            insertionSort(array);
+            output[0] += System.nanoTime() - start;
 
-        // Speed test for quick sort
-        start = System.nanoTime();
-        quickSort(array);
-        output[2] = System.nanoTime() - start;
+            // Speed test for selection sort
+            start = System.nanoTime();
+            selectionSort(array);
+            output[1] += System.nanoTime() - start;
 
-        // Speed test for merge sort
-        start = System.nanoTime();
-        mergeSort(array);
-        output[3] = System.nanoTime() - start;
+            // Speed test for quick sort
+            start = System.nanoTime();
+            quickSort(array);
+            output[2] += System.nanoTime() - start;
+
+            // Speed test for merge sort
+            start = System.nanoTime();
+            mergeSort(array);
+            output[3] += System.nanoTime() - start;
+        }
+
+        // Get average for each algorithm
+        output[0] /= runTimes;
+        output[1] /= runTimes;
+        output[2] /= runTimes;
+        output[3] /= runTimes;
 
         return output;
     }

@@ -13,7 +13,23 @@ import java.util.Arrays;
  *  @author Dermot O'Brien
  *  @version HT 2020
  *
- *  TODO: Test empty input, algorithm performance comparison
+ */
+
+/**
+ * Algorithm Performance Comparison
+ *
+ * Table shows the average speed of 3 tests for each algorithm (insertion, selection, quick & merge)
+ * This performance comparison uses 7 different data sets to show different algorithmic efficacy
+ * dependent on the data set
+ *
+ * Results: Time (nano seconds) [insert,   selection, quick,    merge]
+ *  numbers1k                   [3113600,  2830800,   3924966,  373800]
+ *  numbers1kDuplicates         [805833,   262333,    226200,   194833]
+ *  numbers1kNearlyOrdered      [224066,   222733,    201500,   146800]
+ *  numbers1kReverse            [301300,   291266,    210066,   152166]
+ *  numbers1kSorted             [238300,   202466,    194900,   146600]
+ *  numbers10k                  [23872500, 17175866,  19562633, 978833]
+ *
  */
 @RunWith(JUnit4.class)
 public class SortComparisonTest
